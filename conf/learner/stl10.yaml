@@ -1,0 +1,7 @@
+# @package _group_
+
+training_data: STL10
+watermark_data: GTSRB
+model_name: RN20
+num_classes: 10
+normalize_with_imagenet_vals: True

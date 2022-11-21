@@ -1,0 +1,24 @@
+# @package _group_
+name: adv-wm
+
+# Hyperparamaters for training
+train_batch_size: 256
+test_batch_size: 256
+lr: 0.005
+epochs: 100
+
+log_interval: 100 # in iterations
+
+attack: pgd # method for adversarial example generation
+
+# Hyperparameters for PGD/FGSM
+eps: 0.25 # max perturbation. (PGD, FGSM)
+alpha: 0.01 # step size (PGD only)
+num_iter: 25 # number of steps (PGD only)
+randomize: True # whether or not the initiazation of PGD example is random (PGD only)
+
+# Hyperparameters for watermarking
+wm_train: True # Flag for watermarking training
+trigger_size: 100
+wm_batch_size: 16
+adv_wm_train: False

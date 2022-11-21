@@ -1,0 +1,13 @@
+# @package _global_
+defaults:
+  - task: ???
+  - learner: ???
+  - hydra/job_logging: custom
+
+data_path: ${hydra:runtime.cwd}/data/
+seed: null
+gpu: 0
+
+hydra:
+  run:
+    dir: ./outputs/${task.name}/${learner.training_data}/${now:%Y-%m-%d}/${now:%H-%M-%S.%f}

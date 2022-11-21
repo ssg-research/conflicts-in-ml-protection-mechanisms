@@ -1,0 +1,28 @@
+name: ml-conf-interests
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3
+  - jupyter
+  - matplotlib
+  - plotly
+  - pandas
+  - mypy
+  - pylint
+  - pip
+  - pytorch
+  - requests
+  - omegaconf
+  - scipy
+  - torchvision
+  - rich
+  - tqdm
+  - pip:
+    - wget
+    - wandb
+    - scikit-image
+    - einops
+    - hydra-core
+    - opacus
