@@ -87,6 +87,8 @@ def evaluate(model: torch.nn.Module, num_classes: int, epoch: int, test_loader: 
                 delta = torch.zeros_like(X, requires_grad=True)
                 delta = pgd_linf(model, X, y_true, loss_function, cfg_adv)
                 X += delta
+                # clamp to [0,1] range for creating adversarial examples
+                X = torch.clamp(X, 0, 1)
 
             y_pred = model(X)
             predicted = torch.argmax(y_pred, dim=1)
@@ -159,10 +161,13 @@ def train(cfg_adv: AdvTrainingSchema, cfg_learner: LearnerSchema, data_path: Pat
 
             delta = torch.zeros_like(X, requires_grad=True)
             delta = pgd_linf(model, X, y_true, loss_func, cfg_adv)
+            X += delta
+            # clamp to [0,1] range for creating adversarial examples
+            X = torch.clamp(X, 0, 1)
 
             opt.zero_grad()
-
-            y_pred = model(X + delta)
+        
+            y_pred = model(X)
             loss = loss_func(y_pred, y_true)
 
             loss.backward()
@@ -194,6 +199,8 @@ def train(cfg_adv: AdvTrainingSchema, cfg_learner: LearnerSchema, data_path: Pat
                     delta = torch.zeros_like(X, requires_grad=True)
                     delta = pgd_linf(model, X, y_true, loss_func, cfg_adv)
                     X += delta
+                    # clamp to [0,1] range for creating adversarial examples
+                    X = torch.clamp(X, 0, 1)
 
                 opt.zero_grad()
 
